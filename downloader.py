@@ -3,7 +3,7 @@ import zipfile
 from datetime import datetime
 import requests
 from config import *
-
+from zoneinfo import ZoneInfo
 
 # --------------------------------
 # Ensure folders exist
@@ -16,7 +16,9 @@ os.makedirs(MARKER_FOLDER, exist_ok=True)
 # Weekend Skip
 # --------------------------------
 
-today = datetime.now()
+today = datetime.now(
+    ZoneInfo("Asia/Karachi")
+)
 
 if today.weekday() >= 5:
     print("Weekend. Exiting.")
