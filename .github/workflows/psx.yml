@@ -1,12 +1,13 @@
 name: PSX Downloader
 
+permissions:
+  contents: write
+
 on:
   schedule:
-
-    # Every 5 minutes
-    # Between 2 PM and 3:55 PM PKT
-
-    - cron: "*/5 9-10 * * 1-5"
+    # - cron: "25-59/5 10 * * 1-5"
+    - cron: "*/5 * * * *"
+    - cron: "0 11 * * 1-5"
 
   workflow_dispatch:
 
@@ -35,10 +36,14 @@ jobs:
 
       - name: Commit Files
         run: |
-          git config --global user.name github-actions
-          git config --global user.email github-actions@github.com
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
 
           git add .
-          git commit -m "PSX update" || echo "No Changes"
 
-          git push
+          if ! git diff --staged --quiet; then
+            git commit -m "PSX update"
+            git push
+          else
+            echo "No changes"
+          fi
