@@ -10,14 +10,11 @@ on:
     # - cron: "0 11 * * 1-5"
     - cron: '*/5 * * * *'
 
-
 jobs:
-  run:
-
+  build:
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Checkout
         uses: actions/checkout@v4
 
