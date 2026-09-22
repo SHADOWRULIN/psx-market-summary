@@ -203,6 +203,9 @@ cython_debug/
 # Temporary file for partial code execution
 tempCodeRunnerFile.py
 
+# Runtime state (per-day processed markers)
+processed/*.done
+
 # Ruff stuff:
 .ruff_cache/
 

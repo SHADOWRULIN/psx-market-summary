@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "psx-market-summary"
+version = "0.1.0"
+description = "Download and extract the PSX (Pakistan Stock Exchange) daily market summary archive"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+keywords = ["psx", "pakistan-stock-exchange", "market-data", "downloader"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Financial and Insurance Industry",
+    "Programming Language :: Python :: 3",
+    "Topic :: Office/Business :: Financial :: Investment",
+]
+dependencies = [
+    "requests>=2.28",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "ruff>=0.4",
+]
+
+[project.scripts]
+psx-summary = "downloader:main"
+
+[tool.setuptools]
+py-modules = ["downloader", "config"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["F", "E9"]
